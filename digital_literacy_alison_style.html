@@ -1,0 +1,465 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--fs:16px;--green:#0d7a4e;--green2:#09623e;--light:#f4fbf7;--card:#fff;--gray:#f6f7f8;--text:#1a1a2e;--sub:#5a6474;--border:#e2e8ee;--radius:12px;}
+body{font-family:'Nunito',var(--font-sans);background:#f0f4f8;color:var(--text);}
+.wrap{max-width:960px;margin:0 auto;padding:0 0 2rem;}
+
+/* TOPBAR */
+.topbar{background:var(--green);padding:0 1.5rem;display:flex;align-items:center;gap:1rem;height:56px;position:sticky;top:0;z-index:50;}
+.topbar .logo{color:#fff;font-size:22px;font-weight:800;letter-spacing:-0.5px;flex-shrink:0;}
+.topbar .logo span{color:#a8f0c6;}
+.topbar-nav{display:flex;gap:4px;flex:1;}
+.tnav{background:none;border:none;color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;padding:6px 12px;border-radius:8px;cursor:pointer;font-family:'Nunito',sans-serif;transition:background 0.15s;}
+.tnav:hover,.tnav.active{background:rgba(255,255,255,0.15);color:#fff;}
+.topbar-right{display:flex;gap:8px;margin-left:auto;}
+.tbtn{border:none;border-radius:8px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+.tbtn-outline{background:transparent;border:1.5px solid rgba(255,255,255,0.6);color:#fff;}
+.tbtn-solid{background:#fff;color:var(--green);}
+
+.font-bar{background:#fff;border-bottom:1px solid var(--border);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;}
+.font-bar span{font-size:13px;color:var(--sub);font-weight:600;}
+.fbtn{background:#f0f4f8;border:1.5px solid var(--border);border-radius:8px;padding:5px 14px;cursor:pointer;font-weight:700;color:var(--text);font-family:'Nunito',sans-serif;transition:all 0.15s;}
+.fbtn:hover{border-color:var(--green);}
+.fbtn.active{background:var(--green);color:#fff;border-color:var(--green);}
+
+/* HERO */
+.hero{background:linear-gradient(120deg,#09623e 0%,#0d7a4e 60%,#1a9e67 100%);padding:2.5rem 1.5rem 2rem;color:#fff;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;background:rgba(255,255,255,0.05);border-radius:50%;}
+.hero-tag{display:inline-block;background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:13px;font-weight:700;margin-bottom:12px;border:1px solid rgba(255,255,255,0.25);}
+.hero h1{font-size:calc(var(--fs) + 12px);font-weight:800;line-height:1.25;margin-bottom:10px;max-width:520px;}
+.hero p{font-size:calc(var(--fs) + 1px);opacity:0.88;margin-bottom:1.5rem;max-width:480px;line-height:1.6;}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.hbtn{border:none;border-radius:10px;padding:12px 24px;font-size:calc(var(--fs));font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:transform 0.12s;}
+.hbtn:hover{transform:translateY(-1px);}
+.hbtn-main{background:#fff;color:var(--green);}
+.hbtn-sec{background:rgba(255,255,255,0.15);color:#fff;border:1.5px solid rgba(255,255,255,0.4);}
+.hero-stats{display:flex;gap:1.5rem;margin-top:1.75rem;flex-wrap:wrap;}
+.hstat{text-align:center;}
+.hstat .num{font-size:calc(var(--fs) + 6px);font-weight:800;}
+.hstat .lbl{font-size:12px;opacity:0.75;margin-top:2px;}
+
+/* SECTION */
+.sec{padding:1.5rem 1.5rem 0.5rem;}
+.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.sec-title{font-size:calc(var(--fs) + 4px);font-weight:800;color:var(--text);}
+.sec-link{font-size:calc(var(--fs) - 2px);color:var(--green);font-weight:700;cursor:pointer;background:none;border:none;font-family:'Nunito',sans-serif;}
+
+/* PROGRESS BANNER */
+.progress-banner{margin:1rem 1.5rem 0;background:#fff;border-radius:var(--radius);border:1.5px solid var(--green);padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem;}
+.pb-icon{font-size:32px;flex-shrink:0;}
+.pb-info{flex:1;}
+.pb-title{font-size:calc(var(--fs));font-weight:700;color:var(--text);margin-bottom:4px;}
+.pb-bar-wrap{background:#e8f5ee;border-radius:8px;height:10px;}
+.pb-bar{background:var(--green);border-radius:8px;height:10px;transition:width 0.5s;}
+.pb-pct{font-size:13px;font-weight:700;color:var(--green);margin-top:4px;}
+.pb-cert{background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;}
+
+/* COURSE CARDS */
+.course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;padding:0 1.5rem;}
+.course-card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:box-shadow 0.15s,transform 0.15s;}
+.course-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.1);transform:translateY(-2px);}
+.cc-thumb{height:110px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;}
+.cc-badge{position:absolute;top:8px;left:8px;background:var(--green);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;}
+.cc-badge.free{background:#f59e0b;}
+.cc-body{padding:12px;}
+.cc-cat{font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.cc-title{font-size:calc(var(--fs) - 1px);font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.35;}
+.cc-meta{font-size:12px;color:var(--sub);display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.cc-stars{color:#f59e0b;font-size:12px;}
+.cc-progress-wrap{background:#e8f5ee;border-radius:6px;height:6px;margin-bottom:6px;}
+.cc-progress{background:var(--green);border-radius:6px;height:6px;transition:width 0.4s;}
+.cc-pct{font-size:11px;color:var(--green);font-weight:700;}
+.cc-enroll{width:100%;background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px;font-size:calc(var(--fs) - 2px);font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;margin-top:6px;transition:background 0.15s;}
+.cc-enroll:hover{background:var(--green2);}
+.cc-enroll.enrolled{background:#e8f5ee;color:var(--green);border:1.5px solid var(--green);}
+
+/* VIDEO SECTION */
+.video-upload-area{padding:0 1.5rem;}
+.yt-row{display:flex;gap:8px;margin-bottom:1rem;}
+.yt-row input{flex:1;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-size:var(--fs);font-family:'Nunito',sans-serif;color:var(--text);background:#fff;}
+.yt-row input:focus{outline:none;border-color:var(--green);}
+.yt-row button{background:var(--green);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:var(--fs);font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+.upload-drop{border:2px dashed var(--border);border-radius:var(--radius);padding:1.75rem;text-align:center;cursor:pointer;background:#fff;transition:border-color 0.15s;}
+.upload-drop:hover{border-color:var(--green);background:var(--light);}
+.upload-drop .ud-icon{font-size:40px;margin-bottom:8px;}
+.upload-drop .ud-text{font-size:calc(var(--fs));font-weight:700;color:var(--text);margin-bottom:4px;}
+.upload-drop .ud-sub{font-size:13px;color:var(--sub);}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;padding:0 1.5rem;margin-top:1rem;}
+.video-item{background:#fff;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:box-shadow 0.15s;}
+.video-item:hover{box-shadow:0 4px 16px rgba(0,0,0,0.09);}
+.vi-thumb{height:120px;background:#09623e;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;}
+.vi-thumb .play-overlay{position:absolute;background:rgba(0,0,0,0.35);width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;}
+.video-item:hover .play-overlay{opacity:1;}
+.play-overlay span{font-size:40px;}
+.vi-body{padding:10px 12px;}
+.vi-title{font-size:calc(var(--fs) - 1px);font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.3;}
+.vi-play-btn{width:100%;background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:200;align-items:center;justify-content:center;padding:1rem;}
+.overlay.open{display:flex;}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;}
+.modal-top{background:var(--green);padding:1.25rem 1.5rem;border-radius:16px 16px 0 0;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}
+.modal-top h2{color:#fff;font-size:calc(var(--fs) + 3px);font-weight:800;line-height:1.3;}
+.modal-close{background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:18px;border-radius:8px;width:32px;height:32px;cursor:pointer;flex-shrink:0;font-family:'Nunito',sans-serif;}
+.modal-body{padding:1.5rem;}
+.modal-video-wrap{position:relative;width:100%;padding-top:56.25%;background:#000;border-radius:10px;overflow:hidden;margin-bottom:1.25rem;}
+.modal-video-wrap iframe,.modal-video-wrap video{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.step-row{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start;}
+.step-num{min-width:30px;height:30px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;flex-shrink:0;}
+.step-txt{font-size:var(--fs);color:var(--text);line-height:1.65;padding-top:4px;}
+.modal-done{width:100%;background:var(--green);color:#fff;border:none;border-radius:10px;padding:13px;font-size:calc(var(--fs) + 1px);font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;margin-top:1.25rem;}
+.modal-done:hover{background:var(--green2);}
+
+/* CERT */
+.cert-area{padding:0 1.5rem;}
+.cert-card{background:linear-gradient(135deg,#09623e,#1a9e67);border-radius:var(--radius);padding:1.5rem;color:#fff;text-align:center;position:relative;overflow:hidden;}
+.cert-card::before{content:'🏆';position:absolute;font-size:100px;opacity:0.07;right:-10px;bottom:-20px;}
+.cert-title{font-size:calc(var(--fs) + 2px);font-weight:800;margin-bottom:6px;}
+.cert-sub{font-size:calc(var(--fs) - 1px);opacity:0.85;margin-bottom:1rem;line-height:1.5;}
+.cert-btn{background:#fff;color:var(--green);border:none;border-radius:10px;padding:10px 24px;font-size:calc(var(--fs));font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+
+/* TABS */
+.tabs{display:flex;gap:4px;padding:0 1.5rem;margin-bottom:1rem;border-bottom:2px solid var(--border);overflow-x:auto;}
+.tab{background:none;border:none;padding:10px 16px;font-size:calc(var(--fs) - 1px);font-weight:700;color:var(--sub);cursor:pointer;font-family:'Nunito',sans-serif;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;}
+.tab.active{color:var(--green);border-bottom-color:var(--green);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+.empty-state{text-align:center;padding:2rem;color:var(--sub);font-size:var(--fs);}
+.empty-state .es-icon{font-size:40px;margin-bottom:10px;}
+</style>
+
+<div class="wrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="logo">Цахим<span>Сурагч</span></div>
+    <div class="topbar-nav">
+      <button class="tnav active" onclick="mainTab('home')">Нүүр</button>
+      <button class="tnav" onclick="mainTab('courses')">Хичээлүүд</button>
+      <button class="tnav" onclick="mainTab('videos')">Бичлэг</button>
+      <button class="tnav" onclick="mainTab('cert')">Гэрчилгээ</button>
+    </div>
+    <div class="topbar-right">
+      <button class="tbtn tbtn-solid" onclick="mainTab('courses')">Сурах эхлэх</button>
+    </div>
+  </div>
+
+  <!-- FONT BAR -->
+  <div class="font-bar">
+    <span>Үсгийн хэмжээ:</span>
+    <button class="fbtn" id="fb1" onclick="setFont(14,1)">А жижиг</button>
+    <button class="fbtn active" id="fb2" onclick="setFont(16,2)">А том</button>
+    <button class="fbtn" id="fb3" onclick="setFont(20,3)">А маш том</button>
+  </div>
+
+  <!-- HOME TAB -->
+  <div class="tab-content active" id="main-home">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-tag">🇲🇳 Монгол ахмадуудад зориулав</div>
+      <h1>Цахим дэлхийд тавтай морил!</h1>
+      <p>Утас, интернэт, аппликэйшнийг алхам алхмаар сур. Үнэгүй. Монгол хэлээр.</p>
+      <div class="hero-btns">
+        <button class="hbtn hbtn-main" onclick="mainTab('courses')">Хичээл эхлэх</button>
+        <button class="hbtn hbtn-sec" onclick="mainTab('videos')">Бичлэг үзэх</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="num">9</div><div class="lbl">Хичээл</div></div>
+        <div class="hstat"><div class="num">100%</div><div class="lbl">Үнэгүй</div></div>
+        <div class="hstat"><div class="num">🏆</div><div class="lbl">Гэрчилгээ</div></div>
+      </div>
+    </div>
+
+    <!-- PROGRESS BANNER -->
+    <div class="progress-banner">
+      <div class="pb-icon">📊</div>
+      <div class="pb-info">
+        <div class="pb-title">Таны явц</div>
+        <div class="pb-bar-wrap"><div class="pb-bar" id="mainPbBar" style="width:0%"></div></div>
+        <div class="pb-pct" id="mainPbPct">0 / 9 хичээл дууссан</div>
+      </div>
+      <button class="pb-cert" onclick="mainTab('cert')">🏆 Гэрчилгээ</button>
+    </div>
+
+    <!-- FEATURED COURSES -->
+    <div class="sec" style="margin-top:1.25rem;">
+      <div class="sec-header">
+        <div class="sec-title">Эхлэхэд хялбар хичээлүүд</div>
+        <button class="sec-link" onclick="mainTab('courses')">Бүгдийг харах →</button>
+      </div>
+    </div>
+    <div class="course-grid" id="featuredGrid"></div>
+
+  </div>
+
+  <!-- COURSES TAB -->
+  <div class="tab-content" id="main-courses">
+    <div class="sec">
+      <div class="sec-header">
+        <div class="sec-title">Бүх хичээлүүд</div>
+        <div style="font-size:13px;color:var(--sub);font-weight:600;" id="enrollCount">0 / 9 бүртгэгдсэн</div>
+      </div>
+    </div>
+    <div class="course-grid" id="allCoursesGrid"></div>
+  </div>
+
+  <!-- VIDEOS TAB -->
+  <div class="tab-content" id="main-videos">
+    <div class="sec">
+      <div class="sec-header"><div class="sec-title">Сургалтын бичлэгүүд</div></div>
+    </div>
+    <div class="video-upload-area">
+      <div class="yt-row">
+        <input id="ytUrl" type="text" placeholder="YouTube холбоос оруулах: https://youtube.com/watch?v=..." />
+        <button onclick="addYT()">Нэмэх</button>
+      </div>
+      <div id="ytErr" style="color:#dc2626;font-size:13px;margin:-8px 0 10px;display:none;">Зөв YouTube холбоос оруулна уу.</div>
+      <div class="upload-drop" onclick="document.getElementById('fileIn').click()">
+        <div class="ud-icon">📁</div>
+        <div class="ud-text">Видео файл байршуулах</div>
+        <div class="ud-sub">MP4, MOV — дарж файл сонгоно уу</div>
+      </div>
+      <input type="file" id="fileIn" accept="video/*" style="display:none" onchange="handleFile(event)" />
+    </div>
+    <div class="video-grid" id="videoGrid"></div>
+    <div id="noVid" class="empty-state"><div class="es-icon">🎬</div><div>Бичлэг байхгүй байна.<br>Дээрээс нэмнэ үү.</div></div>
+  </div>
+
+  <!-- CERT TAB -->
+  <div class="tab-content" id="main-cert">
+    <div class="sec"><div class="sec-title">🏆 Гэрчилгээ</div></div>
+    <div class="cert-area">
+      <div class="cert-card">
+        <div style="font-size:48px;margin-bottom:10px;">🎓</div>
+        <div class="cert-title">Цахим Ур Чадварын Гэрчилгээ</div>
+        <div class="cert-sub" id="certSub">Бүх хичээлийг дуусгасны дараа гэрчилгээ авах боломжтой.<br>Одоо <span id="certProg">0/9</span> хичээл дууссан байна.</div>
+        <button class="cert-btn" id="certBtn" onclick="downloadCert()" disabled style="opacity:0.5;cursor:not-allowed;">Гэрчилгээ авах</button>
+      </div>
+      <div style="margin-top:1.25rem;">
+        <div style="font-size:calc(var(--fs) + 1px);font-weight:700;color:var(--text);margin-bottom:1rem;">Хичээлийн явц</div>
+        <div id="certCourseList"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- LESSON MODAL -->
+<div class="overlay" id="lessonOverlay" onclick="overlayClick(event)">
+  <div class="modal" id="lessonModal">
+    <div class="modal-top">
+      <h2 id="modalTitle">Хичээл</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="modalVideoArea" style="display:none;"></div>
+      <div id="modalSteps"></div>
+      <button class="modal-done" onclick="markDone()">✓ Хичээл дууслаа — Дараагийн хүртэл!</button>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO PLAYER MODAL -->
+<div class="overlay" id="videoOverlay" onclick="videoOverlayClick(event)">
+  <div class="modal" style="max-width:640px;">
+    <div class="modal-top">
+      <h2 id="videoModalTitle">Бичлэг</h2>
+      <button class="modal-close" onclick="closeVideoModal()">✕</button>
+    </div>
+    <div class="modal-body" style="padding-top:0;">
+      <div class="modal-video-wrap" id="videoModalPlayer"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const courses = [
+  {key:'videocall',icon:'📹',bg:'#09623e',cat:'Харилцаа холбоо',title:'Видео дуудлага хийх',students:'1,240',rating:'4.8',steps:['Facebook Messenger аппликэйшнийг нээ','Дуудахыг хүсч байгаа хүний нэрийг сонго','Камерны товчийг дар — энэ нь видео дуудлага','Тэр хүн хүлээж авбал таны нүүр харагдана','Дуусгахдаа улаан товчийг дар']},
+  {key:'app',icon:'📲',bg:'#1a5c7a',cat:'Үндсэн мэдлэг',title:'Аппликэйшн татаж суулгах',students:'980',rating:'4.9',steps:['Play Store эсвэл App Store-г нээ','Хайлтын талбарт аппликэйшний нэрийг бич','Зөв аппликэйшнийг олоод дар','"Суулгах" товчийг дар','Суусны дараа нүүр хуудсанд гарч ирнэ']},
+  {key:'egov',icon:'🏛️',bg:'#5a3a8a',cat:'Төрийн үйлчилгээ',title:'Е-Засаг онлайн үйлчилгээ',students:'720',rating:'4.7',steps:['E-Mongolia аппликэйшнийг Play Store-с татаж ав','Регистрийн дугаараа оруулан бүртгүүл','Хэрэгтэй үйлчилгээгээ жагсаалтаас сонго','Мэдээллийг дүүргэж "Илгээх" товчийг дар','Хариуг SMS-ээр хүлээж ав']},
+  {key:'search',icon:'🔍',bg:'#7a5a09',cat:'Интернэт',title:'Мэдээлэл хайх',students:'1,100',rating:'4.8',steps:['Chrome браузерийг нээ','Дээд хэсэгт байгаа хайлтын талбарт дар','Хайхыг хүссэн зүйлийг Монголоор бич','Хайх товчийг дар','Хайлтын дүнгээс уншихыг хүссэн зүйлээ дар']},
+  {key:'photo',icon:'📸',bg:'#7a1a3a',cat:'Харилцаа холбоо',title:'Зураг, видео илгээх',students:'860',rating:'4.9',steps:['Мессеж аппликэйшнийг нээ','Илгээхийг хүсч байгаа хүнд яриаг нээ','Хавсаргах товчийг дар','Галерейгаас зургаа сонго','Илгээх товчийг дар']},
+  {key:'password',icon:'🔒',bg:'#3a5a09',cat:'Аюулгүй байдал',title:'Нууц үг хамгаалах',students:'640',rating:'4.7',steps:['Утасны "Тохиргоо"-г нээ','"Аюулгүй байдал" гэснийг сонго','"Дэлгэцийн түгжээ" гэснийг сонго','Шинэ нууц үгийг тоо, үсэг холилдуулж оруул','Баталгаажуулахын тулд дахин оруул']},
+  {key:'shop',icon:'🛒',bg:'#7a3a09',cat:'Онлайн худалдаа',title:'Аюулгүй онлайн худалдаа',students:'540',rating:'4.6',steps:['Итгэмжтэй сайтыг л ашиглаарай','Бараанаа сонгоод сагсанд хийх товчийг дар','Хаяг, холбоо барих мэдээллийг бөглө','Төлбөрийн мэдээллийг анхааралтай оруул','Захиалгаа батлаад хүлээж ав']},
+  {key:'bank',icon:'🏦',bg:'#09437a',cat:'Санхүү',title:'Банкны аппликэйшн',students:'780',rating:'4.8',steps:['Банкны аппликэйшнийг татаж ав','Дансны дугаар болон нууц үгийг оруулаад нэвтэр','"Гүйлгээ" товчийг сонго','Хүлээн авагчийн дансны дугаарыг оруул','Дүн оруулаад батлах товчийг дар']},
+  {key:'settings',icon:'⚙️',bg:'#4a4a4a',cat:'Үндсэн мэдлэг',title:'Утасны тохиргоо',students:'920',rating:'4.7',steps:['Утасны "Тохиргоо"-г нээ','"Дэлгэц" гэснийг сонго','Гэрлийг тааруул','"Фонтын хэмжээ" дотор үсгийг томруул','"Дуу" дотор дуугаа тохируул']}
+];
+
+let enrolled = {};
+let completed = {};
+let uploadedVideos = [];
+let currentKey = null;
+
+function setFont(size, n) {
+  document.documentElement.style.setProperty('--fs', size + 'px');
+  [1,2,3].forEach(i => document.getElementById('fb'+i).classList.remove('active'));
+  document.getElementById('fb'+n).classList.add('active');
+}
+
+function mainTab(name) {
+  ['home','courses','videos','cert'].forEach(t => {
+    document.getElementById('main-'+t).classList.remove('active');
+    const btns = document.querySelectorAll('.tnav');
+    btns[['home','courses','videos','cert'].indexOf(t)].classList.remove('active');
+  });
+  document.getElementById('main-'+name).classList.add('active');
+  document.querySelectorAll('.tnav')[['home','courses','videos','cert'].indexOf(name)].classList.add('active');
+  if (name === 'cert') renderCert();
+  if (name === 'courses') renderAll();
+}
+
+function renderStars(r) {
+  return '★'.repeat(Math.floor(r)) + (r % 1 ? '½' : '') + ' ' + r;
+}
+
+function courseCard(c, showProgress) {
+  const pct = completed[c.key] ? 100 : (enrolled[c.key] ? 40 : 0);
+  return `<div class="course-card" onclick="openLesson('${c.key}')">
+    <div class="cc-thumb" style="background:${c.bg};">
+      <span style="font-size:48px;">${c.icon}</span>
+      <div class="cc-badge free">Үнэгүй</div>
+      ${completed[c.key] ? '<div class="cc-badge" style="left:auto;right:8px;background:#16a34a;">✓ Дууссан</div>' : ''}
+    </div>
+    <div class="cc-body">
+      <div class="cc-cat">${c.cat}</div>
+      <div class="cc-title">${c.title}</div>
+      <div class="cc-meta"><span class="cc-stars">★</span>${c.rating} &nbsp;·&nbsp; ${c.students} сурагч</div>
+      ${enrolled[c.key] ? `<div class="cc-progress-wrap"><div class="cc-progress" style="width:${pct}%"></div></div><div class="cc-pct">${pct}% дууссан</div>` : ''}
+      <button class="cc-enroll ${enrolled[c.key]?'enrolled':''}" onclick="event.stopPropagation();enrollCourse('${c.key}')">
+        ${completed[c.key] ? '✓ Давтан үзэх' : enrolled[c.key] ? '▶ Үргэлжлүүлэх' : '+ Бүртгүүлэх'}
+      </button>
+    </div>
+  </div>`;
+}
+
+function renderFeatured() {
+  const easy = courses.filter((c,i) => i < 4);
+  document.getElementById('featuredGrid').innerHTML = easy.map(c => courseCard(c)).join('');
+}
+
+function renderAll() {
+  document.getElementById('allCoursesGrid').innerHTML = courses.map(c => courseCard(c)).join('');
+  document.getElementById('enrollCount').textContent = Object.keys(enrolled).length + ' / 9 бүртгэгдсэн';
+}
+
+function enrollCourse(key) {
+  enrolled[key] = true;
+  renderFeatured();
+  renderAll();
+  updateProgress();
+  openLesson(key);
+}
+
+function openLesson(key) {
+  const c = courses.find(x => x.key === key);
+  currentKey = key;
+  enrolled[key] = true;
+  document.getElementById('modalTitle').textContent = c.icon + ' ' + c.title;
+
+  const vid = uploadedVideos.find(v => v.lessonKey === key);
+  const va = document.getElementById('modalVideoArea');
+  if (vid) {
+    va.style.display = 'block';
+    va.innerHTML = `<div class="modal-video-wrap">${vid.type==='youtube'?`<iframe src="https://www.youtube.com/embed/${vid.id}?autoplay=1" allowfullscreen allow="autoplay"></iframe>`:`<video src="${vid.src}" controls autoplay></video>`}</div>`;
+  } else { va.style.display = 'none'; va.innerHTML = ''; }
+
+  document.getElementById('modalSteps').innerHTML = c.steps.map((s,i) =>
+    `<div class="step-row"><div class="step-num">${i+1}</div><div class="step-txt">${s}</div></div>`
+  ).join('');
+  document.getElementById('lessonOverlay').classList.add('open');
+}
+
+function closeModal() { document.getElementById('lessonOverlay').classList.remove('open'); document.getElementById('modalVideoArea').innerHTML = ''; }
+function overlayClick(e) { if (e.target === document.getElementById('lessonOverlay')) closeModal(); }
+
+function markDone() {
+  if (currentKey) { completed[currentKey] = true; enrolled[currentKey] = true; }
+  closeModal();
+  updateProgress();
+  renderFeatured();
+  renderAll();
+}
+
+function updateProgress() {
+  const n = Object.keys(completed).length;
+  const pct = Math.round((n/9)*100);
+  document.getElementById('mainPbBar').style.width = pct + '%';
+  document.getElementById('mainPbPct').textContent = n + ' / 9 хичээл дууссан';
+  document.getElementById('certProg').textContent = n + '/9';
+  const btn = document.getElementById('certBtn');
+  if (n >= 9) { btn.removeAttribute('disabled'); btn.style.opacity = '1'; btn.style.cursor = 'pointer'; }
+}
+
+function renderCert() {
+  const n = Object.keys(completed).length;
+  document.getElementById('certCourseList').innerHTML = courses.map(c =>
+    `<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);">
+      <div style="font-size:22px;">${c.icon}</div>
+      <div style="flex:1;font-size:var(--fs);font-weight:600;color:var(--text);">${c.title}</div>
+      <div style="font-size:22px;">${completed[c.key]?'✅':'⬜'}</div>
+    </div>`
+  ).join('');
+}
+
+function downloadCert() {
+  alert('🎓 Баяр хүргэе! Таны гэрчилгээ хэвлэгдэж байна...');
+}
+
+function addYT() {
+  const url = document.getElementById('ytUrl').value.trim();
+  const m = url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+  const errDiv = document.getElementById('ytErr');
+  if (!m) { errDiv.style.display='block'; return; }
+  errDiv.style.display='none';
+  uploadedVideos.push({type:'youtube',id:m[1],title:'YouTube бичлэг '+(uploadedVideos.length+1),lessonKey:null});
+  document.getElementById('ytUrl').value='';
+  renderVideoGrid();
+}
+
+function handleFile(e) {
+  const f = e.target.files[0]; if(!f) return;
+  uploadedVideos.push({type:'file',src:URL.createObjectURL(f),title:f.name,lessonKey:null});
+  e.target.value=''; renderVideoGrid();
+}
+
+function renderVideoGrid() {
+  const grid = document.getElementById('videoGrid');
+  const noVid = document.getElementById('noVid');
+  if (!uploadedVideos.length) { grid.innerHTML=''; noVid.style.display='block'; return; }
+  noVid.style.display='none';
+  grid.innerHTML = uploadedVideos.map((v,i) => `
+    <div class="video-item" onclick="playVideo(${i})">
+      <div class="vi-thumb" style="background:${v.type==='youtube'?'#1a0a2e':'#09623e'};">
+        <span style="font-size:48px;">${v.type==='youtube'?'▶️':'🎞️'}</span>
+        <div class="play-overlay"><span>▶️</span></div>
+      </div>
+      <div class="vi-body">
+        <div class="vi-title">${v.title}</div>
+        <select onchange="event.stopPropagation();uploadedVideos[${i}].lessonKey=this.value||null" onclick="event.stopPropagation()" style="width:100%;margin-bottom:8px;border:1px solid var(--border);border-radius:6px;padding:5px 8px;font-size:12px;font-family:'Nunito',sans-serif;color:var(--sub);background:#fff;">
+          <option value="">Хичээлд хавсаргах...</option>
+          ${courses.map(c=>`<option value="${c.key}" ${v.lessonKey===c.key?'selected':''}>${c.title}</option>`).join('')}
+        </select>
+        <button class="vi-play-btn" onclick="event.stopPropagation();playVideo(${i})">▶ Тоглуулах</button>
+      </div>
+    </div>`).join('');
+}
+
+function playVideo(i) {
+  const v = uploadedVideos[i];
+  document.getElementById('videoModalTitle').textContent = v.title;
+  document.getElementById('videoModalPlayer').innerHTML = v.type==='youtube'
+    ? `<iframe src="https://www.youtube.com/embed/${v.id}?autoplay=1" allowfullscreen allow="autoplay"></iframe>`
+    : `<video src="${v.src}" controls autoplay></video>`;
+  document.getElementById('videoOverlay').classList.add('open');
+}
+function closeVideoModal() { document.getElementById('videoOverlay').classList.remove('open'); document.getElementById('videoModalPlayer').innerHTML=''; }
+function videoOverlayClick(e) { if(e.target===document.getElementById('videoOverlay')) closeVideoModal(); }
+
+renderFeatured();
+renderAll();
+</script>
